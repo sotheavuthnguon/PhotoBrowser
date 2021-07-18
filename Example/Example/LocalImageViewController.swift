@@ -40,6 +40,22 @@ class LocalImageViewController: BaseCollectionViewController {
         // 可指定打开时定位到哪一页
         browser.pageIndex = indexPath.item
         // 展示
-        browser.show()
+        browser.jxPhotoBrowserDelegate = self
+        browser.show(method: .presentInNav(fromVC: self, embed: nil))
     }
+}
+
+extension LocalImageViewController: JXPhotoBrowserDelegate {
+    func onSaveTapped() {
+        print(#function)
+    }
+    
+    func onForwardTapped() {
+        print(#function)
+    }
+    
+    func onShareTapped() {
+        print(#function)
+    }
+    
 }

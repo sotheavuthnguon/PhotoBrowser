@@ -8,6 +8,13 @@
 
 import UIKit
 
+@objc public protocol JXPhotoBrowserDelegate {
+    func onSaveTapped()
+    func onForwardTapped()
+    func onShareTapped()
+    @objc optional func onDeleteTapped()
+}
+
 /// 图片浏览器
 /// - 不支持复用，每次使用请新建实例
 open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
@@ -15,10 +22,13 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
     /// 通过本回调，把图片浏览器嵌套在导航控制器里
     public typealias PresentEmbedClosure = (JXPhotoBrowser) -> UINavigationController
     
+    open var jxPhotoBrowserDelegate: JXPhotoBrowserDelegate?
+    
     /// 打开方式类型
     public enum ShowMethod {
         case push(inNC: UINavigationController?)
         case present(fromVC: UIViewController?, embed: PresentEmbedClosure?)
+        case presentInNav(fromVC: UIViewController?, embed: PresentEmbedClosure?)
     }
     
     /// 滑动方向类型
@@ -27,8 +37,32 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
         case vertical
     }
     
+    open lazy var saveLocalizedString = "Save"
+    open lazy var forwardLocalizedString = "Forward"
+    open lazy var shareLocalizedString = "Share"
+    open lazy var cancelLocalizedString = "Cancel"
+    
+    open lazy var actionButton: UIBarButtonItem = {
+        let actionButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(handleActions))
+        return actionButton
+    }()
+    
+    open lazy var deleteButton: UIBarButtonItem = {
+        let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(handleDelete))
+        return deleteButton
+    }()
+    
     /// 自实现转场动画
     open lazy var transitionAnimator: JXPhotoBrowserAnimatedTransitioning = JXPhotoBrowserFadeAnimator()
+    
+    open lazy var isHideDeleteButtonInToolBar = true
+    
+    open lazy var navBarView: UIView = {
+        let navBarView = UIView()
+        navBarView.backgroundColor = .red
+        navBarView.translatesAutoresizingMaskIntoConstraints = false
+        return navBarView
+    }()
     
     /// 滑动方向
     open var scrollDirection: JXPhotoBrowser.ScrollDirection {
@@ -128,6 +162,13 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
             toVC.transitioningDelegate = self
             let from = fromVC ?? JXPhotoBrowser.topMost
             from?.present(toVC, animated: true, completion: nil)
+        case let .presentInNav(fromVC, embed):
+            let toVC = UINavigationController(rootViewController: embed?(self) ?? self)
+            toVC.modalPresentationStyle = .custom
+            toVC.modalPresentationCapturesStatusBarAppearance = true
+            toVC.transitioningDelegate = self
+            let from = fromVC ?? JXPhotoBrowser.topMost
+            from?.present(toVC, animated: true, completion: nil)
         }
     }
     
@@ -137,12 +178,62 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
         pageIndicator?.reloadData(numberOfItems: numberOfItems(), pageIndex: pageIndex)
     }
     
+    private func setupNavBarView() {
+        view.addSubview(navBarView)
+        navBarView.layer.zPosition = 1
+        NSLayoutConstraint.activate([
+            navBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            navBarView.topAnchor.constraint(equalTo: view.topAnchor),
+            navBarView.heightAnchor.constraint(equalToConstant: topBarHeight)
+        ])
+    }
+    
+    @objc private func handleDelete() {
+        guard let delegate = jxPhotoBrowserDelegate else { return }
+        delegate.onDeleteTapped?()
+    }
+    
+    private func setupToolBarView() {
+        navigationController?.setToolbarHidden(false, animated: true)
+        var items = [UIBarButtonItem]()
+        let flexibleButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        items.append(actionButton)
+        items.append(flexibleButton)
+        if !isHideDeleteButtonInToolBar {
+            items.append(deleteButton)
+        }
+        self.toolbarItems = items
+        
+        automaticallyAdjustsScrollViewInsets = false
+    }
+    
+    @objc private func handleActions() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: saveLocalizedString, style: .default) { [unowned self] _ in
+            guard let delegate = self.jxPhotoBrowserDelegate else { return }
+            delegate.onSaveTapped()
+        })
+        alertController.addAction(UIAlertAction(title: forwardLocalizedString, style: .default) { [unowned self] _ in
+            guard let delegate = self.jxPhotoBrowserDelegate else { return }
+            delegate.onForwardTapped()
+        })
+        
+        alertController.addAction(UIAlertAction(title: shareLocalizedString, style: .default) { [unowned self] _ in
+            guard let delegate = self.jxPhotoBrowserDelegate else { return }
+            delegate.onShareTapped()
+        })
+        
+        alertController.addAction(UIAlertAction(title: cancelLocalizedString, style: .cancel))
+        present(alertController, animated: true, completion: nil)
+    }
     open override func viewDidLoad() {
         super.viewDidLoad()
         
-        automaticallyAdjustsScrollViewInsets = false
-        hideNavigationBar(true)
+//        setupNavBarView()
+        setupToolBarView()
         
+        hideNavigationBar(true)
         browserView.photoBrowser = self
         transitionAnimator.photoBrowser = self
         
@@ -183,6 +274,8 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
     
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        navBarView.isHidden = true
+        navigationController?.setToolbarHidden(true, animated: true)
         hideNavigationBar(false)
     }
     

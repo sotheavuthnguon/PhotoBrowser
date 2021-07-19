@@ -9,10 +9,10 @@
 import UIKit
 
 @objc public protocol JXPhotoBrowserDelegate {
-    func onSaveTapped()
-    func onForwardTapped()
-    func onShareTapped()
-    @objc optional func onDeleteTapped()
+    func onSaveTapped(index: Int)
+    func onForwardTapped(index: Int)
+    func onShareTapped(index: Int)
+    @objc optional func onDeleteTapped(index: Int)
 }
 
 /// 图片浏览器
@@ -201,7 +201,7 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
     
     @objc private func handleDelete() {
         guard let delegate = jxPhotoBrowserDelegate else { return }
-        delegate.onDeleteTapped?()
+        delegate.onDeleteTapped?(index: pageIndex)
     }
     
     private func setupToolBarView() {
@@ -222,16 +222,16 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: saveLocalizedString, style: .default) { [unowned self] _ in
             guard let delegate = self.jxPhotoBrowserDelegate else { return }
-            delegate.onSaveTapped()
+            delegate.onSaveTapped(index: pageIndex)
         })
         alertController.addAction(UIAlertAction(title: forwardLocalizedString, style: .default) { [unowned self] _ in
             guard let delegate = self.jxPhotoBrowserDelegate else { return }
-            delegate.onForwardTapped()
+            delegate.onForwardTapped(index: pageIndex)
         })
         
         alertController.addAction(UIAlertAction(title: shareLocalizedString, style: .default) { [unowned self] _ in
             guard let delegate = self.jxPhotoBrowserDelegate else { return }
-            delegate.onShareTapped()
+            delegate.onShareTapped(index: pageIndex)
         })
         
         alertController.addAction(UIAlertAction(title: cancelLocalizedString, style: .cancel))

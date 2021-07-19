@@ -46,16 +46,16 @@ class LocalImageViewController: BaseCollectionViewController {
 }
 
 extension LocalImageViewController: JXPhotoBrowserDelegate {
-    func onSaveTapped() {
-        print(#function)
+    func onSaveTapped(index: Int) {
+        print("\(#function) - Index: \(index)")
     }
     
-    func onForwardTapped() {
-        print(#function)
+    func onForwardTapped(index: Int) {
+        print("\(#function) - Index: \(index)")
     }
     
-    func onShareTapped() {
-        print(#function)
+    func onShareTapped(index: Int) {
+        print("\(#function) - Index: \(index)")
     }
     
 }

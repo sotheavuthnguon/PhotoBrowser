@@ -233,7 +233,7 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
 //        setupNavBarView()
         setupToolBarView()
         
-        hideNavigationBar(true)
+        hideNavigationBar(false)
         browserView.photoBrowser = self
         transitionAnimator.photoBrowser = self
         
@@ -260,7 +260,7 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        hideNavigationBar(true)
+        hideNavigationBar(false)
     }
     
     open override func viewDidAppear(_ animated: Bool) {

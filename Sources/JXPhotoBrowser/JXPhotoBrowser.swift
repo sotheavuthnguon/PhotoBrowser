@@ -41,6 +41,7 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
     open lazy var forwardLocalizedString = "Forward"
     open lazy var shareLocalizedString = "Share"
     open lazy var cancelLocalizedString = "Cancel"
+    open lazy var doneLocalizedString = "Done"
     
     open lazy var actionButton: UIBarButtonItem = {
         let actionButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(handleActions))
@@ -50,6 +51,11 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
     open lazy var deleteButton: UIBarButtonItem = {
         let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(handleDelete))
         return deleteButton
+    }()
+    
+    open lazy var doneButton: UIBarButtonItem = {
+        let doneButton = UIBarButtonItem(title: doneLocalizedString, style: .done, target: self, action: #selector(handleDone))
+        return doneButton
     }()
     
     /// 自实现转场动画
@@ -189,6 +195,10 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
         ])
     }
     
+    @objc private func handleDone() {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @objc private func handleDelete() {
         guard let delegate = jxPhotoBrowserDelegate else { return }
         delegate.onDeleteTapped?()
@@ -230,6 +240,7 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
     open override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.leftBarButtonItem = doneButton
 //        setupNavBarView()
         setupToolBarView()
         

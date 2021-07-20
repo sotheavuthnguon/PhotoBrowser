@@ -200,7 +200,8 @@ open class JXPhotoBrowserImageCell: UIView, UIScrollViewDelegate, UIGestureRecog
     
     /// 单击
     @objc open func onSingleTap(_ tap: UITapGestureRecognizer) {
-        photoBrowser?.dismiss()
+//        photoBrowser?.dismiss()
+        photoBrowser?.toggleTopBottomBar()
     }
     
     /// 双击

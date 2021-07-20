@@ -196,7 +196,7 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
     }
     
     @objc private func handleDone() {
-        dismiss(animated: true, completion: nil)
+        dismiss()
     }
     
     @objc private func handleDelete() {

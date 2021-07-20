@@ -61,12 +61,12 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
     
     open lazy var isHideDeleteButtonInToolBar = true
     
-    open lazy var navBarView: UIView = {
-        let navBarView = UIView()
-        navBarView.backgroundColor = .red
-        navBarView.translatesAutoresizingMaskIntoConstraints = false
-        return navBarView
-    }()
+//    open lazy var navBarView: UIView = {
+//        let navBarView = UIView()
+//        navBarView.backgroundColor = .red
+//        navBarView.translatesAutoresizingMaskIntoConstraints = false
+//        return navBarView
+//    }()
     
     /// 滑动方向
     open var scrollDirection: JXPhotoBrowser.ScrollDirection {
@@ -182,16 +182,16 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
         pageIndicator?.reloadData(numberOfItems: numberOfItems(), pageIndex: pageIndex)
     }
     
-    private func setupNavBarView() {
-        view.addSubview(navBarView)
-        navBarView.layer.zPosition = 1
-        NSLayoutConstraint.activate([
-            navBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            navBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            navBarView.topAnchor.constraint(equalTo: view.topAnchor),
-            navBarView.heightAnchor.constraint(equalToConstant: topBarHeight)
-        ])
-    }
+//    private func setupNavBarView() {
+//        view.addSubview(navBarView)
+//        navBarView.layer.zPosition = 1
+//        NSLayoutConstraint.activate([
+//            navBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            navBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            navBarView.topAnchor.constraint(equalTo: view.topAnchor),
+//            navBarView.heightAnchor.constraint(equalToConstant: topBarHeight)
+//        ])
+//    }
     
     @objc private func handleDone() {
         dismiss()
@@ -244,9 +244,7 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
         super.viewDidLoad()
         
         navigationItem.leftBarButtonItem = doneButton
-//        setupNavBarView()
         setupToolBarView()
-        
         hideNavigationBar(false)
         browserView.photoBrowser = self
         transitionAnimator.photoBrowser = self
@@ -275,6 +273,7 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hideNavigationBar(false)
+        navigationController?.setToolbarHidden(false, animated: true)
     }
     
     open override func viewDidAppear(_ animated: Bool) {
@@ -288,9 +287,8 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
     
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navBarView.isHidden = true
-        navigationController?.setToolbarHidden(true, animated: true)
         hideNavigationBar(false)
+        navigationController?.setToolbarHidden(true, animated: true)
     }
     
     open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

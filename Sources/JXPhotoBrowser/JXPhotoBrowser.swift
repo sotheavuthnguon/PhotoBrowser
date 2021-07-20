@@ -9,9 +9,7 @@
 import UIKit
 
 @objc public protocol JXPhotoBrowserDelegate {
-    func onSaveTapped(index: Int)
-    func onForwardTapped(index: Int)
-    func onShareTapped(index: Int)
+    func onActionTapped(index: Int)
     @objc optional func onDeleteTapped(index: Int)
 }
 
@@ -219,6 +217,9 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
     }
     
     @objc private func handleActions() {
+        guard let delegate = self.jxPhotoBrowserDelegate else { return }
+        delegate.onActionTapped(index: pageIndex)
+        /*
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: saveLocalizedString, style: .default) { [unowned self] _ in
             guard let delegate = self.jxPhotoBrowserDelegate else { return }
@@ -228,15 +229,17 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
             guard let delegate = self.jxPhotoBrowserDelegate else { return }
             delegate.onForwardTapped(index: pageIndex)
         })
-        
+
         alertController.addAction(UIAlertAction(title: shareLocalizedString, style: .default) { [unowned self] _ in
             guard let delegate = self.jxPhotoBrowserDelegate else { return }
             delegate.onShareTapped(index: pageIndex)
         })
-        
+
         alertController.addAction(UIAlertAction(title: cancelLocalizedString, style: .cancel))
         present(alertController, animated: true, completion: nil)
+        */
     }
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
         

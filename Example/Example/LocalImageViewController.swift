@@ -46,16 +46,36 @@ class LocalImageViewController: BaseCollectionViewController {
 }
 
 extension LocalImageViewController: JXPhotoBrowserDelegate {
-    func onSaveTapped(index: Int) {
-        print("\(#function) - Index: \(index)")
+    func onActionTapped(index: Int) {
+        
+        // set up activity view controller
+        let image = self.dataSource[index].localName.flatMap { UIImage(named: $0) }
+        let imageToShare = [ image ]
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        
+        // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+        
+        // present the view controller
+        UIApplication.shared.topMostViewController?.present(activityViewController, animated: true, completion: nil)
     }
     
-    func onForwardTapped(index: Int) {
-        print("\(#function) - Index: \(index)")
+}
+
+extension UIApplication {
+    var topMostViewController: UIViewController? {
+        var topViewController: UIViewController? = keyWindow?.rootViewController
+        
+        while topViewController?.presentedViewController != nil {
+            topViewController = topViewController?.presentedViewController!
+        }
+        
+        if let topNavigationController = topViewController as? UINavigationController {
+            topViewController = topNavigationController.topViewController
+        }
+        
+        return topViewController
     }
-    
-    func onShareTapped(index: Int) {
-        print("\(#function) - Index: \(index)")
-    }
-    
+
 }

@@ -67,5 +67,7 @@
 	</array>
 	<key>CFBundleDisplayName</key>
 	<string>PhotoBrowser</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>We would like to access your photo library</string>
 </dict>
 </plist>

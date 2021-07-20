@@ -76,6 +76,25 @@ class VideoPhotoViewController: BaseCollectionViewController {
             return cell?.imageView
         })
         browser.pageIndex = indexPath.item
-        browser.show()
+        browser.jxPhotoBrowserDelegate = self
+        browser.show(method: .presentInNav(fromVC: self, embed: nil))
     }
+}
+
+extension VideoPhotoViewController: JXPhotoBrowserDelegate {
+    func onActionTapped(index: Int) {
+        
+        // set up activity view controller
+        let image = self.dataSource[index].localName.flatMap { UIImage(named: $0) }
+        let imageToShare = [ image ]
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        
+        // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+        
+        // present the view controller
+        UIApplication.shared.topMostViewController?.present(activityViewController, animated: true, completion: nil)
+    }
+    
 }

@@ -204,19 +204,19 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
         delegate.onDeleteTapped?(index: pageIndex)
     }
     
-    private func setupToolBarView() {
-        navigationController?.setToolbarHidden(false, animated: true)
-        var items = [UIBarButtonItem]()
-        let flexibleButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        items.append(actionButton)
-        items.append(flexibleButton)
-        if !isHideDeleteButtonInToolBar {
-            items.append(deleteButton)
-        }
-        self.toolbarItems = items
-        
-        automaticallyAdjustsScrollViewInsets = false
-    }
+//    private func setupToolBarView() {
+//        navigationController?.setToolbarHidden(false, animated: true)
+//        var items = [UIBarButtonItem]()
+//        let flexibleButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+//        items.append(actionButton)
+//        items.append(flexibleButton)
+//        if !isHideDeleteButtonInToolBar {
+//            items.append(deleteButton)
+//        }
+//        self.toolbarItems = items
+//
+//        automaticallyAdjustsScrollViewInsets = false
+//    }
     
     @objc private func handleActions() {
         guard let delegate = self.jxPhotoBrowserDelegate else { return }
@@ -245,8 +245,10 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
     open override func viewDidLoad() {
         super.viewDidLoad()
         
+        automaticallyAdjustsScrollViewInsets = false
         navigationItem.leftBarButtonItem = doneButton
-        setupToolBarView()
+        navigationItem.rightBarButtonItem = actionButton
+//        setupToolBarView()
         hideNavigationBar(false)
         browserView.photoBrowser = self
         transitionAnimator.photoBrowser = self
@@ -275,7 +277,7 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hideNavigationBar(false)
-        navigationController?.setToolbarHidden(false, animated: true)
+//        navigationController?.setToolbarHidden(false, animated: true)
     }
     
     open override func viewDidAppear(_ animated: Bool) {
@@ -290,7 +292,7 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         hideNavigationBar(false)
-        navigationController?.setToolbarHidden(true, animated: true)
+//        navigationController?.setToolbarHidden(true, animated: true)
     }
     
     open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -387,7 +389,7 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
     open func toggleTopBottomBar() {
         isShowTopBottomBar.toggle()
         hideNavigationBar(isShowTopBottomBar)
-        navigationController?.setToolbarHidden(isShowTopBottomBar, animated: true)
+//        navigationController?.setToolbarHidden(isShowTopBottomBar, animated: true)
     }
     
     deinit {

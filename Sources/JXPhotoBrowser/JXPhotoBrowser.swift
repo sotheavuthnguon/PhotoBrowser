@@ -43,7 +43,7 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
     
     open lazy var actionButton: UIBarButtonItem = {
         let actionButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(handleActions))
-        actionButton.tintColor = .blue
+        actionButton.tintColor = .systemBlue
         return actionButton
     }()
     
@@ -54,7 +54,7 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
     
     open lazy var doneButton: UIBarButtonItem = {
         let doneButton = UIBarButtonItem(title: doneLocalizedString, style: .done, target: self, action: #selector(handleDone))
-        doneButton.tintColor = .blue
+        doneButton.tintColor = .systemBlue
         return doneButton
     }()
     

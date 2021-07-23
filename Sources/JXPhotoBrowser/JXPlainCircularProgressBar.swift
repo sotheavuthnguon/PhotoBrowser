@@ -8,25 +8,25 @@
 import UIKit
 
 public class JXPlainCircularProgressBar: UIView {
-    @IBInspectable var ringColor: UIColor? = .gray {
+    @IBInspectable public var ringColor: UIColor? = .gray {
         didSet { setNeedsDisplay() }
     }
-    @IBInspectable var ringWidth: CGFloat = 2
+    @IBInspectable public var ringWidth: CGFloat = 2
 
-    var progress: CGFloat = 0 {
+    public var progress: CGFloat = 0 {
         didSet { setNeedsDisplay() }
     }
 
     private var progressLayer = CAShapeLayer()
     private var backgroundMask = CAShapeLayer()
 
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setupLayers()
 
     }
 
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         super.init(coder: coder)
         setupLayers()
     }

@@ -92,8 +92,9 @@
 		61E7A9EF5EB2AB6443854681CF3A248A /* SDImageCacheDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E6C3BC7122B8CBC2EC031E1D59C499C /* SDImageCacheDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62AD7D42C96A04828EEA3CC151AA5E38 /* RedirectHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C0B6DEA289C8E0769AC9208E2CDA08 /* RedirectHandler.swift */; };
 		63423F3526AAC2BC0034682E /* JXPlainCircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63423F3226AAC2BC0034682E /* JXPlainCircularProgressBar.swift */; };
-		63423F3626AAC2BC0034682E /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63423F3326AAC2BC0034682E /* Media.xcassets */; };
 		63423F3726AAC2BC0034682E /* JXHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63423F3426AAC2BC0034682E /* JXHelper.swift */; };
+		63423F3926AACB5D0034682E /* AssetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63423F3826AACB5D0034682E /* AssetManager.swift */; };
+		63423F3E26AACC2E0034682E /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63423F3D26AACC2E0034682E /* Media.xcassets */; };
 		63C2BA763C69F183DDB32456D7201543 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A74964E8B5F2929A33F9EB5995D78D /* Filter.swift */; };
 		649A041C003876A4F759C03C3E3652CF /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960EFB2993162319F258881B60DA024 /* SDImageCache.m */; };
 		65BE8A8C0E9B70288AD8CCE147773029 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 2565889371566E10D20975ACF5C40311 /* UIImage+MultiFormat.m */; };
@@ -355,8 +356,9 @@
 		609F19A8D7D54B97EEE022E510993D2E /* SDImageLoader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageLoader.m; path = SDWebImage/Core/SDImageLoader.m; sourceTree = "<group>"; };
 		60FDFA8C26BA76D40F6655F53B0129BB /* JXPhotoBrowserNoneAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JXPhotoBrowserNoneAnimator.swift; path = Sources/JXPhotoBrowser/JXPhotoBrowserNoneAnimator.swift; sourceTree = "<group>"; };
 		63423F3226AAC2BC0034682E /* JXPlainCircularProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JXPlainCircularProgressBar.swift; path = Sources/JXPhotoBrowser/JXPlainCircularProgressBar.swift; sourceTree = "<group>"; };
-		63423F3326AAC2BC0034682E /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Sources/JXPhotoBrowser/Media.xcassets; sourceTree = "<group>"; };
 		63423F3426AAC2BC0034682E /* JXHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JXHelper.swift; path = Sources/JXPhotoBrowser/JXHelper.swift; sourceTree = "<group>"; };
+		63423F3826AACB5D0034682E /* AssetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AssetManager.swift; path = Sources/JXPhotoBrowser/AssetManager.swift; sourceTree = "<group>"; };
+		63423F3D26AACC2E0034682E /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		654B995587E00CCC535BCBCE31EADBAC /* SDWebImageDownloaderConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloaderConfig.h; path = SDWebImage/Core/SDWebImageDownloaderConfig.h; sourceTree = "<group>"; };
 		6554B58F8D99D7219F3EF88125971B7D /* ImageCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageCache.swift; path = Sources/Cache/ImageCache.swift; sourceTree = "<group>"; };
 		65F4046325E01CD80095A9A5 /* JXPhotoBrowserImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JXPhotoBrowserImageView.swift; path = Sources/JXPhotoBrowser/JXPhotoBrowserImageView.swift; sourceTree = "<group>"; };
@@ -735,6 +737,14 @@
 			path = "Example/Pods/Target Support Files/JXPhotoBrowser";
 			sourceTree = "<group>";
 		};
+		63423F3A26AACB990034682E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				63423F3D26AACC2E0034682E /* Media.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		78AC4CD4353D362851580BEAA889B75A /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -825,6 +835,7 @@
 		B18FD500499D9557919ACAC52C8ED6DE /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
+				63423F3A26AACB990034682E /* Resources */,
 				ECED2908B1FA2134255014BF705A9C11 /* JXPhotoBrowser */,
 			);
 			name = "Development Pods";
@@ -914,9 +925,9 @@
 				C546476430AE7A2D176443E057B642A7 /* JXPhotoBrowserZoomAnimator.swift */,
 				258736388BC74C01CB5697DA90494E78 /* JXPhotoBrowserZoomSupportedCell.swift */,
 				63423F3226AAC2BC0034682E /* JXPlainCircularProgressBar.swift */,
-				63423F3326AAC2BC0034682E /* Media.xcassets */,
 				D25B8F557653CC0306BA7FED2D28A8C6 /* Pod */,
 				604D315A15AF31BA479CFA51D2FD6531 /* Support Files */,
+				63423F3826AACB5D0034682E /* AssetManager.swift */,
 			);
 			name = JXPhotoBrowser;
 			path = ../..;
@@ -1149,7 +1160,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63423F3626AAC2BC0034682E /* Media.xcassets in Resources */,
+				63423F3E26AACC2E0034682E /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1270,6 +1281,7 @@
 				63423F3726AAC2BC0034682E /* JXHelper.swift in Sources */,
 				56A1CFD8A809DEF4A9131E2B4C58EDE8 /* JXPhotoBrowserNumberPageIndicator.swift in Sources */,
 				A62154B9D8733FB95066D66C0AE72B0E /* JXPhotoBrowserPageIndicator.swift in Sources */,
+				63423F3926AACB5D0034682E /* AssetManager.swift in Sources */,
 				9E6448C342D1DB7C3B630CF9FB5C84CC /* JXPhotoBrowserSmoothZoomAnimator.swift in Sources */,
 				BC76075E0ABBF6C3293C51C2CBEC9D21 /* JXPhotoBrowserView.swift in Sources */,
 				8673787B207BDDB668BB14366556554B /* JXPhotoBrowserZoomAnimator.swift in Sources */,

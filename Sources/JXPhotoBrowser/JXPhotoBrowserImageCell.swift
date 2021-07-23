@@ -64,8 +64,8 @@ open class JXPhotoBrowserImageCell: UIView, UIScrollViewDelegate, UIGestureRecog
 //        return view
 //    }()
     
-    open lazy var progressBarView: PlainCircularProgressBar = {
-        let view = PlainCircularProgressBar()
+    open lazy var progressBarView: JXPlainCircularProgressBar = {
+        let view = JXPlainCircularProgressBar()
         view.backgroundColor = .clear
         view.ringColor = #colorLiteral(red: 0.9764705882, green: 0.631372549, blue: 0.1058823529, alpha: 1)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -404,7 +404,7 @@ open class JXPhotoBrowserImageCell: UIView, UIScrollViewDelegate, UIGestureRecog
     }
 }
 
-public class PlainCircularProgressBar: UIView {
+public class JXPlainCircularProgressBar: UIView {
     @IBInspectable var ringColor: UIColor? = .gray {
         didSet { setNeedsDisplay() }
     }

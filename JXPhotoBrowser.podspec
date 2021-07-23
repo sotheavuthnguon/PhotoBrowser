@@ -13,6 +13,6 @@ Pod::Spec.new do |s|
     s.ios.deployment_target = '9.0'
     s.swift_version = '4.0', '4.2', '5.0'
     s.source_files = 'Sources/JXPhotoBrowser/*'
-    s.ios.resource = 'Resources/JXPhotoBrowser.bundle'
+    s.resources = 'JXPhotoBrowser/JXPhotoBrowser.bundle'
     
 end

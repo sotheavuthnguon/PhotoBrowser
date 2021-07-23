@@ -76,7 +76,7 @@ open class JXPhotoBrowserImageCell: UIView, UIScrollViewDelegate, UIGestureRecog
         let imgView = JXPhotoBrowserImageView()
         imgView.contentMode = .scaleAspectFit
         imgView.backgroundColor = .clear
-        imgView.image = UIImage(named: "ic_photo_browser_download", in: Bundle(for: JXPhotoBrowserImageCell.self), compatibleWith: nil)
+        imgView.image = AssetManager.image("ic_photo_browser_download")
         imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView
     }()

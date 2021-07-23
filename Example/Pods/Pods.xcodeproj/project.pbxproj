@@ -94,7 +94,7 @@
 		63423F3526AAC2BC0034682E /* JXPlainCircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63423F3226AAC2BC0034682E /* JXPlainCircularProgressBar.swift */; };
 		63423F3726AAC2BC0034682E /* JXHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63423F3426AAC2BC0034682E /* JXHelper.swift */; };
 		63423F3926AACB5D0034682E /* AssetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63423F3826AACB5D0034682E /* AssetManager.swift */; };
-		63423F3E26AACC2E0034682E /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63423F3D26AACC2E0034682E /* Media.xcassets */; };
+		63423F4026AACF280034682E /* JXPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 63423F3F26AACF280034682E /* JXPhotoBrowser.bundle */; };
 		63C2BA763C69F183DDB32456D7201543 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A74964E8B5F2929A33F9EB5995D78D /* Filter.swift */; };
 		649A041C003876A4F759C03C3E3652CF /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960EFB2993162319F258881B60DA024 /* SDImageCache.m */; };
 		65BE8A8C0E9B70288AD8CCE147773029 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 2565889371566E10D20975ACF5C40311 /* UIImage+MultiFormat.m */; };
@@ -358,7 +358,7 @@
 		63423F3226AAC2BC0034682E /* JXPlainCircularProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JXPlainCircularProgressBar.swift; path = Sources/JXPhotoBrowser/JXPlainCircularProgressBar.swift; sourceTree = "<group>"; };
 		63423F3426AAC2BC0034682E /* JXHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JXHelper.swift; path = Sources/JXPhotoBrowser/JXHelper.swift; sourceTree = "<group>"; };
 		63423F3826AACB5D0034682E /* AssetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AssetManager.swift; path = Sources/JXPhotoBrowser/AssetManager.swift; sourceTree = "<group>"; };
-		63423F3D26AACC2E0034682E /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		63423F3F26AACF280034682E /* JXPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JXPhotoBrowser.bundle; sourceTree = "<group>"; };
 		654B995587E00CCC535BCBCE31EADBAC /* SDWebImageDownloaderConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloaderConfig.h; path = SDWebImage/Core/SDWebImageDownloaderConfig.h; sourceTree = "<group>"; };
 		6554B58F8D99D7219F3EF88125971B7D /* ImageCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageCache.swift; path = Sources/Cache/ImageCache.swift; sourceTree = "<group>"; };
 		65F4046325E01CD80095A9A5 /* JXPhotoBrowserImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JXPhotoBrowserImageView.swift; path = Sources/JXPhotoBrowser/JXPhotoBrowserImageView.swift; sourceTree = "<group>"; };
@@ -740,7 +740,7 @@
 		63423F3A26AACB990034682E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				63423F3D26AACC2E0034682E /* Media.xcassets */,
+				63423F3F26AACF280034682E /* JXPhotoBrowser.bundle */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1160,7 +1160,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63423F3E26AACC2E0034682E /* Media.xcassets in Resources */,
+				63423F4026AACF280034682E /* JXPhotoBrowser.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

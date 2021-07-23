@@ -91,6 +91,7 @@
 		60D9074ABD57B9265C7789616B14C23A /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A445158C7C68BACDA123339252DD1E /* UIView+WebCacheOperation.m */; };
 		61E7A9EF5EB2AB6443854681CF3A248A /* SDImageCacheDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E6C3BC7122B8CBC2EC031E1D59C499C /* SDImageCacheDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62AD7D42C96A04828EEA3CC151AA5E38 /* RedirectHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C0B6DEA289C8E0769AC9208E2CDA08 /* RedirectHandler.swift */; };
+		63423F2D26AAA2E80034682E /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63423F2C26AAA2E80034682E /* Media.xcassets */; };
 		63C2BA763C69F183DDB32456D7201543 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A74964E8B5F2929A33F9EB5995D78D /* Filter.swift */; };
 		649A041C003876A4F759C03C3E3652CF /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6960EFB2993162319F258881B60DA024 /* SDImageCache.m */; };
 		65BE8A8C0E9B70288AD8CCE147773029 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 2565889371566E10D20975ACF5C40311 /* UIImage+MultiFormat.m */; };
@@ -351,6 +352,7 @@
 		5DE3ED99DE9CD2355BF07F19751D9950 /* SDWebImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImage.h; path = WebImage/SDWebImage.h; sourceTree = "<group>"; };
 		609F19A8D7D54B97EEE022E510993D2E /* SDImageLoader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageLoader.m; path = SDWebImage/Core/SDImageLoader.m; sourceTree = "<group>"; };
 		60FDFA8C26BA76D40F6655F53B0129BB /* JXPhotoBrowserNoneAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JXPhotoBrowserNoneAnimator.swift; path = Sources/JXPhotoBrowser/JXPhotoBrowserNoneAnimator.swift; sourceTree = "<group>"; };
+		63423F2C26AAA2E80034682E /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		654B995587E00CCC535BCBCE31EADBAC /* SDWebImageDownloaderConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloaderConfig.h; path = SDWebImage/Core/SDWebImageDownloaderConfig.h; sourceTree = "<group>"; };
 		6554B58F8D99D7219F3EF88125971B7D /* ImageCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageCache.swift; path = Sources/Cache/ImageCache.swift; sourceTree = "<group>"; };
 		65F4046325E01CD80095A9A5 /* JXPhotoBrowserImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JXPhotoBrowserImageView.swift; path = Sources/JXPhotoBrowser/JXPhotoBrowserImageView.swift; sourceTree = "<group>"; };
@@ -893,6 +895,7 @@
 			children = (
 				1116DB408E5FF5A662383D782416C38D /* JXPhotoBrowser.swift */,
 				5BEA28FF7B390CC5504C082CF702A0A6 /* JXPhotoBrowserAnimatedTransitioning.swift */,
+				63423F2C26AAA2E80034682E /* Media.xcassets */,
 				30AFB4A8C261B731C54679DA31EA1D6E /* JXPhotoBrowserCell.swift */,
 				4605FFE81ED131FC9B653FD57FA9B4E7 /* JXPhotoBrowserDefaultPageIndicator.swift */,
 				92642AD324799A66FBEECA2C684479A3 /* JXPhotoBrowserFadeAnimator.swift */,
@@ -1140,6 +1143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63423F2D26AAA2E80034682E /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

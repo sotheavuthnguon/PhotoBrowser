@@ -8,6 +8,10 @@
 
 import UIKit
 
+@objc public protocol JXPhotoBrowserImageCellDelegate {
+    @objc optional func onDownloadImageTapped(index: Int)
+}
+
 open class JXPhotoBrowserImageCell: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate, JXPhotoBrowserCell, JXPhotoBrowserZoomSupportedCell {
     
     /// 弱引用PhotoBrowser
@@ -31,6 +35,49 @@ open class JXPhotoBrowserImageCell: UIView, UIScrollViewDelegate, UIGestureRecog
         imgView.imageDidChangedHandler = { [weak self] in
             self?.setNeedsLayout()
         }
+        return imgView
+    }()
+    
+    open lazy var carbonDownloadView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    open lazy var downloadButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .clear
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleDownload), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc private func handleDownload() {
+        photoBrowser?.downloadImage()
+    }
+    
+//    open lazy var progressBarContainerView: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = .clear
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
+    
+    open lazy var progressBarView: PlainCircularProgressBar = {
+        let view = PlainCircularProgressBar()
+        view.backgroundColor = .clear
+        view.ringColor = #colorLiteral(red: 0.9764705882, green: 0.631372549, blue: 0.1058823529, alpha: 1)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    open lazy var downloadImageView: UIImageView = {
+        let imgView = JXPhotoBrowserImageView()
+        imgView.contentMode = .scaleAspectFit
+        imgView.backgroundColor = .clear
+        imgView.image = UIImage(named: "ic_photo_browser_download", in: Bundle(for: JXPhotoBrowserImageCell.self), compatibleWith: nil)
+        imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView
     }()
     
@@ -90,6 +137,34 @@ open class JXPhotoBrowserImageCell: UIView, UIScrollViewDelegate, UIGestureRecog
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(onSingleTap(_:)))
         singleTap.require(toFail: doubleTap)
         addGestureRecognizer(singleTap)
+        
+        addSubview(carbonDownloadView)
+        carbonDownloadView.layer.zPosition = 1
+        carbonDownloadView.addSubview(downloadImageView)
+        carbonDownloadView.addSubview(progressBarView)
+        carbonDownloadView.addSubview(downloadButton)
+        downloadButton.layer.zPosition = 1
+        NSLayoutConstraint.activate([
+            carbonDownloadView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            carbonDownloadView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
+            downloadButton.topAnchor.constraint(equalTo: carbonDownloadView.topAnchor),
+            downloadButton.leadingAnchor.constraint(equalTo: carbonDownloadView.leadingAnchor),
+            downloadButton.trailingAnchor.constraint(equalTo: carbonDownloadView.trailingAnchor),
+            downloadButton.bottomAnchor.constraint(equalTo: carbonDownloadView.bottomAnchor),
+            
+            progressBarView.topAnchor.constraint(equalTo: carbonDownloadView.topAnchor),
+            progressBarView.leadingAnchor.constraint(equalTo: carbonDownloadView.leadingAnchor),
+            progressBarView.trailingAnchor.constraint(equalTo: carbonDownloadView.trailingAnchor),
+            progressBarView.bottomAnchor.constraint(equalTo: carbonDownloadView.bottomAnchor),
+            
+            downloadImageView.topAnchor.constraint(equalTo: carbonDownloadView.topAnchor, constant: 10),
+            downloadImageView.leadingAnchor.constraint(equalTo: carbonDownloadView.leadingAnchor, constant: 10),
+            downloadImageView.trailingAnchor.constraint(equalTo: carbonDownloadView.trailingAnchor, constant: -10),
+            downloadImageView.bottomAnchor.constraint(equalTo: carbonDownloadView.bottomAnchor, constant: -10),
+            downloadImageView.widthAnchor.constraint(equalToConstant: 70),
+            downloadImageView.heightAnchor.constraint(equalToConstant: 70)
+        ])
     }
     
     // 长按事件
@@ -326,5 +401,53 @@ open class JXPhotoBrowserImageCell: UIView, UIScrollViewDelegate, UIGestureRecog
     
     open var showContentView: UIView {
         return imageView
+    }
+}
+
+public class PlainCircularProgressBar: UIView {
+    @IBInspectable var ringColor: UIColor? = .gray {
+        didSet { setNeedsDisplay() }
+    }
+    @IBInspectable var ringWidth: CGFloat = 2
+
+    var progress: CGFloat = 0 {
+        didSet { setNeedsDisplay() }
+    }
+
+    private var progressLayer = CAShapeLayer()
+    private var backgroundMask = CAShapeLayer()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupLayers()
+
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupLayers()
+    }
+
+    private func setupLayers() {
+        backgroundMask.lineWidth = ringWidth
+        backgroundMask.fillColor = nil
+        backgroundMask.strokeColor = UIColor.black.cgColor
+        layer.mask = backgroundMask
+
+        progressLayer.lineWidth = ringWidth
+        progressLayer.fillColor = nil
+        layer.addSublayer(progressLayer)
+        layer.transform = CATransform3DMakeRotation(CGFloat(90 * Double.pi / 180), 0, 0, -1)
+    }
+
+    public override func draw(_ rect: CGRect) {
+        let circlePath = UIBezierPath(ovalIn: rect.insetBy(dx: ringWidth / 2, dy: ringWidth / 2))
+        backgroundMask.path = circlePath.cgPath
+
+        progressLayer.path = circlePath.cgPath
+        progressLayer.lineCap = .round
+        progressLayer.strokeStart = 0
+        progressLayer.strokeEnd = progress
+        progressLayer.strokeColor = ringColor?.cgColor
     }
 }

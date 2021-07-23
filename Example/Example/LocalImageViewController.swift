@@ -61,6 +61,10 @@ extension LocalImageViewController: JXPhotoBrowserDelegate {
         UIApplication.shared.topMostViewController?.present(activityViewController, animated: true, completion: nil)
     }
     
+    func onDownloadImageTapped(index: Int) {
+        print("*** Download image at index: \(index)")
+    }
+    
 }
 
 extension UIApplication {

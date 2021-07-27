@@ -8,9 +8,9 @@
 
 import UIKit
 
-@objc public protocol JXPhotoBrowserImageCellDelegate {
-    @objc optional func onDownloadImageTapped(index: Int)
-}
+//@objc public protocol JXPhotoBrowserImageCellDelegate {
+//    @objc optional func onDownloadImageTapped(index: Int)
+//}
 
 open class JXPhotoBrowserImageCell: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate, JXPhotoBrowserCell, JXPhotoBrowserZoomSupportedCell {
     
@@ -38,24 +38,24 @@ open class JXPhotoBrowserImageCell: UIView, UIScrollViewDelegate, UIGestureRecog
         return imgView
     }()
     
-    open lazy var carbonDownloadView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+//    open lazy var carbonDownloadView: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = .clear
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
     
-    open lazy var downloadButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = .clear
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(handleDownload), for: .touchUpInside)
-        return button
-    }()
+//    open lazy var downloadButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.backgroundColor = .clear
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.addTarget(self, action: #selector(handleDownload), for: .touchUpInside)
+//        return button
+//    }()
     
-    @objc private func handleDownload() {
-        photoBrowser?.downloadImage()
-    }
+//    @objc private func handleDownload() {
+//        photoBrowser?.downloadImage()
+//    }
     
 //    open lazy var progressBarContainerView: UIView = {
 //        let view = UIView()
@@ -64,22 +64,22 @@ open class JXPhotoBrowserImageCell: UIView, UIScrollViewDelegate, UIGestureRecog
 //        return view
 //    }()
     
-    open lazy var progressBarView: JXPlainCircularProgressBar = {
-        let view = JXPlainCircularProgressBar()
-        view.backgroundColor = .clear
-        view.ringColor = #colorLiteral(red: 0.9764705882, green: 0.631372549, blue: 0.1058823529, alpha: 1)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+//    open lazy var progressBarView: JXPlainCircularProgressBar = {
+//        let view = JXPlainCircularProgressBar()
+//        view.backgroundColor = .clear
+//        view.ringColor = #colorLiteral(red: 0.9764705882, green: 0.631372549, blue: 0.1058823529, alpha: 1)
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
     
-    open lazy var downloadImageView: UIImageView = {
-        let imgView = JXPhotoBrowserImageView()
-        imgView.contentMode = .scaleAspectFit
-        imgView.backgroundColor = .clear
-        imgView.image = AssetManager.image("ic_photo_browser_download")
-        imgView.translatesAutoresizingMaskIntoConstraints = false
-        return imgView
-    }()
+//    open lazy var downloadImageView: UIImageView = {
+//        let imgView = JXPhotoBrowserImageView()
+//        imgView.contentMode = .scaleAspectFit
+//        imgView.backgroundColor = .clear
+//        imgView.image = AssetManager.image("ic_photo_browser_download")
+//        imgView.translatesAutoresizingMaskIntoConstraints = false
+//        return imgView
+//    }()
     
     open var scrollView: UIScrollView = {
         let view = UIScrollView()
@@ -138,33 +138,33 @@ open class JXPhotoBrowserImageCell: UIView, UIScrollViewDelegate, UIGestureRecog
         singleTap.require(toFail: doubleTap)
         addGestureRecognizer(singleTap)
         
-        addSubview(carbonDownloadView)
-        carbonDownloadView.layer.zPosition = 1
-        carbonDownloadView.addSubview(downloadImageView)
-        carbonDownloadView.addSubview(progressBarView)
-        carbonDownloadView.addSubview(downloadButton)
-        downloadButton.layer.zPosition = 1
-        NSLayoutConstraint.activate([
-            carbonDownloadView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            carbonDownloadView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            
-            downloadButton.topAnchor.constraint(equalTo: carbonDownloadView.topAnchor),
-            downloadButton.leadingAnchor.constraint(equalTo: carbonDownloadView.leadingAnchor),
-            downloadButton.trailingAnchor.constraint(equalTo: carbonDownloadView.trailingAnchor),
-            downloadButton.bottomAnchor.constraint(equalTo: carbonDownloadView.bottomAnchor),
-            
-            progressBarView.topAnchor.constraint(equalTo: carbonDownloadView.topAnchor),
-            progressBarView.leadingAnchor.constraint(equalTo: carbonDownloadView.leadingAnchor),
-            progressBarView.trailingAnchor.constraint(equalTo: carbonDownloadView.trailingAnchor),
-            progressBarView.bottomAnchor.constraint(equalTo: carbonDownloadView.bottomAnchor),
-            
-            downloadImageView.topAnchor.constraint(equalTo: carbonDownloadView.topAnchor, constant: 10),
-            downloadImageView.leadingAnchor.constraint(equalTo: carbonDownloadView.leadingAnchor, constant: 10),
-            downloadImageView.trailingAnchor.constraint(equalTo: carbonDownloadView.trailingAnchor, constant: -10),
-            downloadImageView.bottomAnchor.constraint(equalTo: carbonDownloadView.bottomAnchor, constant: -10),
-            downloadImageView.widthAnchor.constraint(equalToConstant: 70),
-            downloadImageView.heightAnchor.constraint(equalToConstant: 70)
-        ])
+//        addSubview(carbonDownloadView)
+//        carbonDownloadView.layer.zPosition = 1
+//        carbonDownloadView.addSubview(downloadImageView)
+//        carbonDownloadView.addSubview(progressBarView)
+//        carbonDownloadView.addSubview(downloadButton)
+//        downloadButton.layer.zPosition = 1
+//        NSLayoutConstraint.activate([
+//            carbonDownloadView.centerXAnchor.constraint(equalTo: centerXAnchor),
+//            carbonDownloadView.centerYAnchor.constraint(equalTo: centerYAnchor),
+//
+//            downloadButton.topAnchor.constraint(equalTo: carbonDownloadView.topAnchor),
+//            downloadButton.leadingAnchor.constraint(equalTo: carbonDownloadView.leadingAnchor),
+//            downloadButton.trailingAnchor.constraint(equalTo: carbonDownloadView.trailingAnchor),
+//            downloadButton.bottomAnchor.constraint(equalTo: carbonDownloadView.bottomAnchor),
+//
+//            progressBarView.topAnchor.constraint(equalTo: carbonDownloadView.topAnchor),
+//            progressBarView.leadingAnchor.constraint(equalTo: carbonDownloadView.leadingAnchor),
+//            progressBarView.trailingAnchor.constraint(equalTo: carbonDownloadView.trailingAnchor),
+//            progressBarView.bottomAnchor.constraint(equalTo: carbonDownloadView.bottomAnchor),
+//
+//            downloadImageView.topAnchor.constraint(equalTo: carbonDownloadView.topAnchor, constant: 10),
+//            downloadImageView.leadingAnchor.constraint(equalTo: carbonDownloadView.leadingAnchor, constant: 10),
+//            downloadImageView.trailingAnchor.constraint(equalTo: carbonDownloadView.trailingAnchor, constant: -10),
+//            downloadImageView.bottomAnchor.constraint(equalTo: carbonDownloadView.bottomAnchor, constant: -10),
+//            downloadImageView.widthAnchor.constraint(equalToConstant: 70),
+//            downloadImageView.heightAnchor.constraint(equalToConstant: 70)
+//        ])
     }
     
     // 长按事件

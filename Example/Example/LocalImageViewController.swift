@@ -14,6 +14,9 @@ class LocalImageViewController: BaseCollectionViewController {
     override class func name() -> String { "本地图片" }
     override class func remark() -> String { "最简单的场景，展示本地图片" }
     
+    
+    let browser = JXPhotoBrowser()
+    
     override func makeDataSource() -> [ResourceModel] {
         makeLocalDataSource()
     }
@@ -26,7 +29,6 @@ class LocalImageViewController: BaseCollectionViewController {
     
     override func openPhotoBrowser(with collectionView: UICollectionView, indexPath: IndexPath) {
         // 实例化
-        let browser = JXPhotoBrowser()
         // 浏览过程中实时获取数据总量
         browser.numberOfItems = {
             self.dataSource.count
@@ -63,6 +65,7 @@ extension LocalImageViewController: JXPhotoBrowserDelegate {
     
     func onDownloadImageTapped(index: Int) {
         print("*** Download image at index: \(index)")
+        browser.reloadData()
     }
     
 }

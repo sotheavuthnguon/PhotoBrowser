@@ -186,6 +186,7 @@ open class JXPhotoBrowserView: UIView, UIScrollViewDelegate {
     
     /// 出队，没缓存则新建
     private func dequeue(cellType: JXPhotoBrowserCell.Type, browser: JXPhotoBrowser) -> JXPhotoBrowserCell {
+        print("**** Got dequeue")
         var cell: JXPhotoBrowserCell
         let name = String(describing: cellType.classForCoder())
         if var array = reusableCells[name], array.count > 0 {

@@ -11,7 +11,7 @@ import UIKit
 @objc public protocol JXPhotoBrowserDelegate {
     func onActionTapped(index: Int)
     @objc optional func onDeleteTapped(index: Int)
-    @objc optional func onDownloadImageTapped(index: Int)
+//    @objc optional func onDownloadImageTapped(index: Int)
 }
 
 /// 图片浏览器
@@ -377,10 +377,10 @@ open class JXPhotoBrowser: UIViewController, UIViewControllerTransitioningDelega
         return transitionAnimator
     }
     
-    func downloadImage() {
-        guard let delegate = jxPhotoBrowserDelegate else { return }
-        delegate.onDownloadImageTapped?(index: pageIndex)
-    }
+//    func downloadImage() {
+//        guard let delegate = jxPhotoBrowserDelegate else { return }
+//        delegate.onDownloadImageTapped?(index: pageIndex)
+//    }
     
     /// 关闭PhotoBrowser
     open func dismiss() {

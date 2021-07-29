@@ -49,7 +49,7 @@ open class JXPhotoBrowserNumberPageIndicator: UILabel, JXPhotoBrowserPageIndicat
     
     public func reloadData(numberOfItems: Int, pageIndex: Int) {
         total = numberOfItems
-        text = "\(pageIndex + 1) / \(total)"
+        text = "\(total - pageIndex) / \(total)" // "\(pageIndex + 1) / \(total)"
         sizeToFit()
         frame.size.width += frame.height
         layer.cornerRadius = frame.height / 2
@@ -61,7 +61,7 @@ open class JXPhotoBrowserNumberPageIndicator: UILabel, JXPhotoBrowserPageIndicat
     }
     
     public func didChanged(pageIndex: Int) {
-        text = "\(pageIndex + 1) / \(total)"
+        text = "\(total - pageIndex) / \(total)" // "\(pageIndex + 1) / \(total)"
     }
     
 }

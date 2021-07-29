@@ -10,6 +10,8 @@ import UIKit
 
 open class JXPhotoBrowserNumberPageIndicator: UILabel, JXPhotoBrowserPageIndicator {
     
+    open var isReversed = false
+    
     ///  页码与顶部的距离
     open lazy var topPadding: CGFloat = {
         if #available(iOS 11.0, *),
@@ -49,7 +51,7 @@ open class JXPhotoBrowserNumberPageIndicator: UILabel, JXPhotoBrowserPageIndicat
     
     public func reloadData(numberOfItems: Int, pageIndex: Int) {
         total = numberOfItems
-        text = "\(total - pageIndex) / \(total)" // "\(pageIndex + 1) / \(total)"
+        text = isReversed ? "\(total - pageIndex) / \(total)" : "\(pageIndex + 1) / \(total)"
         sizeToFit()
         frame.size.width += frame.height
         layer.cornerRadius = frame.height / 2
@@ -61,7 +63,7 @@ open class JXPhotoBrowserNumberPageIndicator: UILabel, JXPhotoBrowserPageIndicat
     }
     
     public func didChanged(pageIndex: Int) {
-        text = "\(total - pageIndex) / \(total)" // "\(pageIndex + 1) / \(total)"
+        text = isReversed ? "\(total - pageIndex) / \(total)" : "\(pageIndex + 1) / \(total)"
     }
     
 }
